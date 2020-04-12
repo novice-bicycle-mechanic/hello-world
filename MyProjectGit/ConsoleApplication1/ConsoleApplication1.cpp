@@ -5,7 +5,7 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "Здравствуй мир!\n";
     
     int a = 0;    // изменение на GitHub-е
 
