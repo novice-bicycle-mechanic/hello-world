@@ -30,7 +30,7 @@ int itemNumber					// ФУНКЦИЯ генерации номера элемента списка
 	bool notReset				// ключ 1/0 не обнуления статической переменной number
 )
 {
-	static int number = 0;
+	static int number = 0;		// номер элемента
 
 	return (notReset) ? (++number) : (number = 0);
 }
@@ -39,18 +39,18 @@ int itemNumber					// ФУНКЦИЯ генерации номера элемента списка
 //-------------------------------------------------------------------------
 
 
-void listOutput
+void listOutput					// ФУНКЦИЯ вывода списка на экран
 (
 	Item* List					// указатель на список
 )
 {
-	if (List)
+	if (List)								// проверка наличия списка
 	{
-		Item* buf = List;
+		Item* buf = List;					// вспомогательный указатель на список
 
 		cout << " Список >";
 
-		while ((buf->next) != nullptr)
+		while ((buf->next) != nullptr)		// вывод списка
 		{
 			cout << " " << buf->num;
 
@@ -69,105 +69,105 @@ void listOutput
 //-------------------------------------------------------------------------
 
 
-void outBackAndForth
+void outBackAndForth			// ФУНКЦИЯ прохода по списку туда и обратно
 (
 	Item* List					// указатель на список
 )
 {
 
-	Item* buf = List;
+	Item* buf = List;			// вспомогательный указатель на список
 
 	cout << " Проход по списку туда и обратно >";
 
-	while ((buf->next) != nullptr)
+	while ((buf->next) != nullptr)		// вывод списка в направлении "туда"
 	{
 		cout << " " << buf->num;
 
 		buf = buf->next;
 	}
 
-	while ((buf->prev) != nullptr)
+	while ((buf->prev) != nullptr)		// вывод списка в направлении "обратно"
 	{
 		cout << " " << buf->num;
 
 		buf = buf->prev;
 	}
 
-	cout << " " << buf->num << N << endl;
+	cout << " " << buf->num << N << endl; // вывод элемента от последнего указателя
 }
 
 
 //-------------------------------------------------------------------------
 
 
-void addItem
+void addItem					// ФУНКЦИЯ добавления элемента в список
 (
 	Item* List					// указатель на список
 )
 {
-	Item* listItem = new Item;
+	Item* listItem = new Item;			// выделим память под элемент списка
 
-	Item* buf = List;
+	Item* buf = List;					// вспомогательный указатель
 
-	listItem->num = itemNumber(1);
+	listItem->num = itemNumber(1);		// задаем номер элементу
 
-	while ((buf->next) != nullptr)
+	while ((buf->next) != nullptr)		// идем до последнего элемента списка
 	{
-		buf = buf->next;
+		buf = buf->next;				// записываем указатель на следующий элемент
 	}
 
-	buf->next = listItem;
+	buf->next = listItem;		// записываем указатель на новый последний элемент
 
-	listItem->prev = buf;
+	listItem->prev = buf;		// записываем указатель на предыдущий (старый последний) элемент
 }
 
 
 //-------------------------------------------------------------------------
 
 
-void delItem
+void delItem					// ФУНКЦИЯ удаления элемента из списка
 (
 	Item* List					// указатель на список
 )
 {
-	Item* buf = List;
+	Item* buf = List;			// вспомогательный указатель
 
-	while ((buf->next) != nullptr)
+	while ((buf->next) != nullptr)	// идем в конец списка
 	{
-		buf = buf->next;
+		buf = buf->next;		// записываем указатель на следующий элемент
 	}
 
-	buf = buf->prev;
+	buf = buf->prev;			// идем на предпоследний элемент списка
 
-	delete buf->next;
+	delete buf->next;			// очищаем память от последнего элемента списка
 
-	buf->next = nullptr;
+	buf->next = nullptr;		// очищаем указатель нового последнего элемента на следующий элемент
 }
 
 
 //-------------------------------------------------------------------------
 
 
-void delItemN
+void delItemN					// ФУНКЦИЯ удаления N элементов из списка
 (
 	Item* List,					// указатель на список
 
 	size_t length				// количество удаляемых элементов
 )
 {
-	Item* buf = List;
+	Item* buf = List;			// вспомогательный указатель
 
-	size_t num = 0;
+	size_t num = 0;				// количество элементов в списке
 
-	while ((buf->next) != nullptr)
+	while ((buf->next) != nullptr)	// считаем количество элементов в списке
 	{
 		buf = buf->next;
 
 		num++;
 	}
 
-	while ((num) && (length))
-	{
+	while ((num) && (length))	// удаляем последние элементы пока
+	{							// один из счетчиков не достигнет нуля
 		delItem(List);
 
 		num--;
@@ -180,40 +180,40 @@ void delItemN
 //-------------------------------------------------------------------------
 
 
-void delList				// удаление всех элементов списка
+void delList					// ФУНКЦИЯ удаления всех элементов списка
 (
 	Item* List					// указатель на список
 )
 {
-	Item* buf = List;
+	Item* buf = List;			// вспомогательный указатель
 
-	int num = 1;
+	int num = 1;				// количество элементов в списке
 
-	while ((buf->next) != nullptr)
+	while ((buf->next) != nullptr)	// считаем кол-во элементов в списке
 	{
 		num++;
 
 		buf = buf->next;
 	}
 
-	while (num > 1)
+	while (num > 1)				// удаление элементов списка
 	{
-		buf = buf->prev;
+		buf = buf->prev;		// встаем на предпоследний элемнт
 
-		delete buf->next;
+		delete buf->next;		// удаляем последний элемент
 
-		buf->next = nullptr;
+		buf->next = nullptr;	// обноляем последний указатель на следующий элемент
 
-		listOutput(List);							// вывод списка на экран
-
+		listOutput(List);		// с выводом списка на экран
+								// после каждого удаления
 		num--;
 	}
 
-	delete List;
+	delete List;				// очищаем память 
 
-	List = nullptr;
+	List = nullptr;				// обнуляем указатель на список
 
-	listOutput(List);							// вывод списка на экран
+	listOutput(List);			// вывод списка на экран
 }
 
 
@@ -248,7 +248,7 @@ int main()
 
 	cout << endl;
 
-	for (size_t i = 0; i < length; i++)
+	for (size_t i = 0; i < length; i++)			// добавляем элементы к списку
 	{
 		addItem(List);
 	}
