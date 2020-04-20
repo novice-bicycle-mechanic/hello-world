@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bypassHorse.cpp">
+    <ClCompile Include="bypassHorseToStart.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
