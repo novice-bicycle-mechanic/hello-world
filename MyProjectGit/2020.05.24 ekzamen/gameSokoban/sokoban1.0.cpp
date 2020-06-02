@@ -165,7 +165,7 @@ int main() {
 	//------------------------------------------------------------------------
 
 	system("title Сокобан 1.0");
-	system("mode con: cols=50 lines=29");
+	system("mode con cols=50 lines=29");
 
 	while (game)		// цикл запуска сеанса игры
 	{
