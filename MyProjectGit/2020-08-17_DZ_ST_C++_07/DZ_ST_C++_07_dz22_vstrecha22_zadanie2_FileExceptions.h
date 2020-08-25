@@ -1,74 +1,74 @@
-// DZ_ST_C++_07_dz22_vstrecha22_zadanie2_FileExceptions.h
+п»ї// DZ_ST_C++_07_dz22_vstrecha22_zadanie2_FileExceptions.h
 #pragma once
 #include <iostream>
 #include "DZ_ST_C++_07_dz22_vstrecha22_zadanie2_MainParentException.h"
 
 
-// КЛАСС-ПЕРЕЧИСЛЕНИЕ кодов исключений файлов
+// РљР›РђРЎРЎ-РџР•Р Р•Р§РРЎР›Р•РќРР• РєРѕРґРѕРІ РёСЃРєР»СЋС‡РµРЅРёР№ С„Р°Р№Р»РѕРІ
 enum class FILE_EXCEPT {
-	NONE,										// ничто - значение для инициализации
-	THE_FILE_IS_NOT_CREATED,					// файл не создан
-	THE_FILE_IS_NOT_OPEN,						// файл не открыт
-	THE_FILE_IS_NOT_CLOSED,						// файл не закрыт
-	THE_FILE_IS_NOT_AVAILABLE,					// файл не доступен
-	THE_FILE_IS_NOT_READABLE,					// файл не доступен для чтения
-	THE_FILE_IS_NOT_WRITABLE,					// файл не доступен для записи
+	NONE,										// РЅРёС‡С‚Рѕ - Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
+	THE_FILE_IS_NOT_CREATED,					// С„Р°Р№Р» РЅРµ СЃРѕР·РґР°РЅ
+	THE_FILE_IS_NOT_OPEN,						// С„Р°Р№Р» РЅРµ РѕС‚РєСЂС‹С‚
+	THE_FILE_IS_NOT_CLOSED,						// С„Р°Р№Р» РЅРµ Р·Р°РєСЂС‹С‚
+	THE_FILE_IS_NOT_AVAILABLE,					// С„Р°Р№Р» РЅРµ РґРѕСЃС‚СѓРїРµРЅ
+	THE_FILE_IS_NOT_READABLE,					// С„Р°Р№Р» РЅРµ РґРѕСЃС‚СѓРїРµРЅ РґР»СЏ С‡С‚РµРЅРёСЏ
+	THE_FILE_IS_NOT_WRITABLE,					// С„Р°Р№Р» РЅРµ РґРѕСЃС‚СѓРїРµРЅ РґР»СЏ Р·Р°РїРёСЃРё
 };
 
-// КЛАСС собственно исключений файлов
+// РљР›РђРЎРЎ СЃРѕР±СЃС‚РІРµРЅРЅРѕ РёСЃРєР»СЋС‡РµРЅРёР№ С„Р°Р№Р»РѕРІ
 class FileExcept {
 private:
-	FILE_EXCEPT exception{ FILE_EXCEPT::NONE };         // исключение
+	FILE_EXCEPT exception{ FILE_EXCEPT::NONE };         // РёСЃРєР»СЋС‡РµРЅРёРµ
 public:
-	// КОНСТРУКТОР с параметрами
+	// РљРћРќРЎРўР РЈРљРўРћР  СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
 	FileExcept(FILE_EXCEPT exception_) : exception(exception_) {}
 
-	// ОБЪЯВЛЕНИЕ дружественной ФУНКЦИИ перегрузки оператора <<
-	// для вывода сообщения исключения на экран
+	// РћР‘РЄРЇР’Р›Р•РќРР• РґСЂСѓР¶РµСЃС‚РІРµРЅРЅРѕР№ Р¤РЈРќРљР¦РР РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° <<
+	// РґР»СЏ РІС‹РІРѕРґР° СЃРѕРѕР±С‰РµРЅРёСЏ РёСЃРєР»СЋС‡РµРЅРёСЏ РЅР° СЌРєСЂР°РЅ
 	friend std::ostream& operator<<(std::ostream& out, const FileExcept& fileExcept);
 };
 
-// Дружественная ФУНКЦИЯ перегрузки оператора << для вывода сообщения исключения на экран
+// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° << РґР»СЏ РІС‹РІРѕРґР° СЃРѕРѕР±С‰РµРЅРёСЏ РёСЃРєР»СЋС‡РµРЅРёСЏ РЅР° СЌРєСЂР°РЅ
 std::ostream& operator<<(std::ostream& out, const FileExcept& fileExcept) {
 	switch (fileExcept.exception)
 	{
 	case FILE_EXCEPT::NONE: {
-		out << " Ничто";
+		out << " РќРёС‡С‚Рѕ";
 		break;
 	}
 	case FILE_EXCEPT::THE_FILE_IS_NOT_CREATED: {
-		out << " Файл не создан";
+		out << " Р¤Р°Р№Р» РЅРµ СЃРѕР·РґР°РЅ";
 		break;
 	}
 	case FILE_EXCEPT::THE_FILE_IS_NOT_OPEN: {
-		out << " Файл не открыт";
+		out << " Р¤Р°Р№Р» РЅРµ РѕС‚РєСЂС‹С‚";
 		break;
 	}
 	case FILE_EXCEPT::THE_FILE_IS_NOT_CLOSED: {
-		out << " Файл не закрыт";
+		out << " Р¤Р°Р№Р» РЅРµ Р·Р°РєСЂС‹С‚";
 		break;
 	}
 	case FILE_EXCEPT::THE_FILE_IS_NOT_AVAILABLE: {
-		out << " Файл не доступен";
+		out << " Р¤Р°Р№Р» РЅРµ РґРѕСЃС‚СѓРїРµРЅ";
 		break;
 	}
 	case FILE_EXCEPT::THE_FILE_IS_NOT_READABLE: {
-		out << " Файл не доступен для чтения";
+		out << " Р¤Р°Р№Р» РЅРµ РґРѕСЃС‚СѓРїРµРЅ РґР»СЏ С‡С‚РµРЅРёСЏ";
 		break;
 	}
 	case FILE_EXCEPT::THE_FILE_IS_NOT_WRITABLE: {
-		out << " Файл не доступен для записи";
+		out << " Р¤Р°Р№Р» РЅРµ РґРѕСЃС‚СѓРїРµРЅ РґР»СЏ Р·Р°РїРёСЃРё";
 		break;
 	}
 	}
 	return out;
 }
 
-// ДОЧЕРНИЙ КЛАСС исключений файлов с дополнительной информацией
+// Р”РћР§Р•Р РќРР™ РљР›РђРЎРЎ РёСЃРєР»СЋС‡РµРЅРёР№ С„Р°Р№Р»РѕРІ СЃ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРµР№
 class FileExceptions : public MainParentException<FileExcept> {
 public:
-	// КОНСТРУКТОР дочернего класса с параметрами,
-	// вызывает конструктор родительского класса
+	// РљРћРќРЎРўР РЈРљРўРћР  РґРѕС‡РµСЂРЅРµРіРѕ РєР»Р°СЃСЃР° СЃ РїР°СЂР°РјРµС‚СЂР°РјРё,
+	// РІС‹Р·С‹РІР°РµС‚ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РєР»Р°СЃСЃР°
 	FileExceptions(FileExcept exception_, int lineNumber_, const char* nameFile_) :
 		MainParentException(exception_, lineNumber_, nameFile_)
 	{}

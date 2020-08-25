@@ -1,23 +1,23 @@
-// DZ_ST_C++_07_dz23_vstrecha23_zadanie_DynamicArray.cpp
+п»ї// DZ_ST_C++_07_dz23_vstrecha23_zadanie_DynamicArray.cpp
 //
-// задание 1 из файла Domasnee_zadanie_1594661480.txt
-// Выполните домашние задания после уроков 3, 4, 5
-// Урок 4. Задание 1
+// Р·Р°РґР°РЅРёРµ 1 РёР· С„Р°Р№Р»Р° Domasnee_zadanie_1594661480.txt
+// Р’С‹РїРѕР»РЅРёС‚Рµ РґРѕРјР°С€РЅРёРµ Р·Р°РґР°РЅРёСЏ РїРѕСЃР»Рµ СѓСЂРѕРєРѕРІ 3, 4, 5
+// РЈСЂРѕРє 4. Р—Р°РґР°РЅРёРµ 1
 /*
-Создайте класс динамического массива, в котором
-реализована проверка выхода за границы массива.
-Перегрузите операторы: [ ], =, +, -, ++ (добавление
-элемента в конец массива), –– (удаление элемента
-из конца массива).
+РЎРѕР·РґР°Р№С‚Рµ РєР»Р°СЃСЃ РґРёРЅР°РјРёС‡РµСЃРєРѕРіРѕ РјР°СЃСЃРёРІР°, РІ РєРѕС‚РѕСЂРѕРј
+СЂРµР°Р»РёР·РѕРІР°РЅР° РїСЂРѕРІРµСЂРєР° РІС‹С…РѕРґР° Р·Р° РіСЂР°РЅРёС†С‹ РјР°СЃСЃРёРІР°.
+РџРµСЂРµРіСЂСѓР·РёС‚Рµ РѕРїРµСЂР°С‚РѕСЂС‹: [ ], =, +, -, ++ (РґРѕР±Р°РІР»РµРЅРёРµ
+СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС† РјР°СЃСЃРёРІР°), вЂ“вЂ“ (СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+РёР· РєРѕРЅС†Р° РјР°СЃСЃРёРІР°).
 */
 #pragma once
 #include <iostream>
 #include "DZ_ST_C++_07_dz23_vstrecha23_zadanie_DynamicArray.h"
 
-namespace programming
+namespace spaceDynamicArray
 {
 
-	// Дружественная ФУНКЦИЯ вывода объекта на консоль
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РІС‹РІРѕРґР° РѕР±СЉРµРєС‚Р° РЅР° РєРѕРЅСЃРѕР»СЊ
 	std::ostream& operator<<(std::ostream& out, const DynamicArray& arr) {
 		if (arr.dynarr) {
 			for (size_t i = 0; i < arr.length; i++) {
@@ -25,29 +25,14 @@ namespace programming
 			}
 		}
 		else {
-			out << " Массив нельзя вывести на экран - массив не существует";
+			out << " РњР°СЃСЃРёРІ РЅРµР»СЊР·СЏ РІС‹РІРµСЃС‚Рё РЅР° СЌРєСЂР°РЅ - РјР°СЃСЃРёРІ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚";
 		}
 		return out;
 	}
 
 
-	// Дружественная функция перегрузки оператора + - объединения массивов
-	DynamicArray operator+(const DynamicArray& arr1, const DynamicArray& arr2) {
-		DynamicArray arr3(arr1.length + arr2.length);
 
-		for (size_t i = 0; i < arr1.length; i++) {
-			arr3.dynarr[i] = arr1.dynarr[i];
-		}
-
-		for (size_t i = arr1.length, j = 0; j < arr2.length; i++, j++) {
-			arr3.dynarr[i] = arr2.dynarr[j];
-		}
-
-		return arr3;
-	}
-
-
-	// Дружественная функция перегрузки оператора - - вычитания массива
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° - - РІС‹С‡РёС‚Р°РЅРёСЏ РјР°СЃСЃРёРІР°
 	DynamicArray operator-(const DynamicArray& arr1, const DynamicArray& arr2) {
 		DynamicArray arr3{ arr1 };
 		size_t length{ arr3.length };
@@ -70,6 +55,36 @@ namespace programming
 		}
 
 		return arr4;
+	}
+
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° + - РѕР±СЉРµРґРёРЅРµРЅРёСЏ РјР°СЃСЃРёРІРѕРІ
+	DynamicArray operator+(const DynamicArray& arr1, const DynamicArray& arr2) {
+		DynamicArray arr3(arr1.length + arr2.length);
+
+		for (size_t i = 0; i < arr1.length; i++) {
+			arr3.dynarr[i] = arr1.dynarr[i];
+		}
+
+		for (size_t i = arr1.length, j = 0; j < arr2.length; i++, j++) {
+			arr3.dynarr[i] = arr2.dynarr[j];
+		}
+
+		return arr3;
+	}
+
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° + - РѕР±СЉРµРґРёРЅРµРЅРёСЏ РјР°СЃСЃРёРІРѕРІ
+	Test operator+(const Test& arr1, const Test& arr2) {
+		Test arr3(arr1.length + arr2.length);
+
+		for (size_t i = 0; i < arr1.length; i++) {
+			arr3.dynarr[i] = arr1.dynarr[i];
+		}
+
+		for (size_t i = arr1.length, j = 0; j < arr2.length; i++, j++) {
+			arr3.dynarr[i] = arr2.dynarr[j];
+		}
+
+		return arr3;
 	}
 
 }

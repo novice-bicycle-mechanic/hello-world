@@ -1,16 +1,12 @@
-// DZ_ST_C++_07_dz22_vstrecha22_zadanie1_List.inl
-// подключен в конце файла "DZ_ST_C++_07_dz22_vstrecha22_zadanie1_List.h"
-// записью: #include "DZ_ST_C++_07_dz22_vstrecha22_zadanie1_List.inl"
-// если в конце h-файла подключать cpp-файл,
-// то подключать cpp-файл к проекту нельзя !!!
-// - выдаст сообщение, что функции уже определены !!!
+п»ї// DZ_ST_C++_07_dz22_vstrecha22_zadanie1_List.cpp
+// included РІ С„Р°Р№Р»Рµ "DZ_ST_C++_07_dz22_vstrecha22_zadanie1_main.cpp"
 
-
+#pragma once
 #include "DZ_ST_C++_07_dz22_vstrecha22_zadanie1_ListExcertions.h"
 #include "DZ_ST_C++_07_dz22_vstrecha22_zadanie1_List.h"
 
 
-// МЕТОД добавления элемента в голову списка
+// РњР•РўРћР” РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
 template <typename T>
 void List<T>::AddToHead(bool keyCount) {
     Elem<T>* newFirstElement = new Elem<T>{ (keyCount ? ++count : count), head, nullptr };
@@ -20,7 +16,7 @@ void List<T>::AddToHead(bool keyCount) {
     if (1 == number) tail = newFirstElement;
 }
 
-// МЕТОД добавления элемента в хвост списка
+// РњР•РўРћР” РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ С…РІРѕСЃС‚ СЃРїРёСЃРєР°
 template <typename T>
 void List<T>::AddToTail(bool keyCount) {
     Elem<T>* newLastElement = new Elem<T>{ (keyCount ? ++count : count), nullptr, tail };
@@ -30,13 +26,13 @@ void List<T>::AddToTail(bool keyCount) {
     if (1 == number) head = newLastElement;
 }
 
-// МЕТОД удаления всех элементов
+// РњР•РўРћР” СѓРґР°Р»РµРЅРёСЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ
 template <typename T>
 void List<T>::DeleteAll() {
     if (head) {
         Elem<T>* currElem = head;
         Elem<T>* nextElem = currElem->next;
-        bool continuation{ false };   // ключ на продолжение процесса удаления элементов
+        bool continuation{ false };   // РєР»СЋС‡ РЅР° РїСЂРѕРґРѕР»Р¶РµРЅРёРµ РїСЂРѕС†РµСЃСЃР° СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ
         while (true) {
             continuation = (bool)currElem->next;
             delete[] currElem;
@@ -53,12 +49,12 @@ void List<T>::DeleteAll() {
     }
 }
 
-// МЕТОД отображения всех элементов списка на экран от первого к последнему
+// РњР•РўРћР” РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР° РЅР° СЌРєСЂР°РЅ РѕС‚ РїРµСЂРІРѕРіРѕ Рє РїРѕСЃР»РµРґРЅРµРјСѓ
 template <typename T>
 void List<T>::Show() const {
     std::cout << " Show():     ";
     if (head) {
-        Elem<T>* tempNext{ head };    // временный указатель на следующий элемент списка
+        Elem<T>* tempNext{ head };    // РІСЂРµРјРµРЅРЅС‹Р№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
         while (tempNext) {
             std::cout << " " << tempNext->value;
             if (tempNext == tail) {
@@ -67,22 +63,22 @@ void List<T>::Show() const {
             }
             tempNext = tempNext->next;
         }
-        // исключение - нулевой указатель на элемент списка
+        // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
         throw ListExceptions(EXCEPTIONS::NULL_POINTER_TO_A_LIST_ITEM, __LINE__, __FILE__);
     }
     else {
-        // исключение - нулевой указатель на голову списка
+        // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
 //        throw ListExceptions(EXCEPTIONS::NULL_POINTER_TO_THE_HEAD_OF_THE_LIST, __LINE__, __FILE__);
         std::cout << std::endl;
     }
 }
 
-// МЕТОД отображения всех элементов списка на экран от последнего к первому
+// РњР•РўРћР” РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР° РЅР° СЌРєСЂР°РЅ РѕС‚ РїРѕСЃР»РµРґРЅРµРіРѕ Рє РїРµСЂРІРѕРјСѓ
 template <typename T>
 void List<T>::RetroShow() const {
     std::cout << " RetroShow():";
     if (tail) {
-        Elem<T>* tempNext{ tail };    // временный указатель на предыдущий элемент списка
+        Elem<T>* tempNext{ tail };    // РІСЂРµРјРµРЅРЅС‹Р№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂРµРґС‹РґСѓС‰РёР№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
         while (tempNext) {
             std::cout << " " << tempNext->value;
             if (tempNext == head) {
@@ -91,17 +87,17 @@ void List<T>::RetroShow() const {
             }
             tempNext = tempNext->prev;
         }
-        // исключение - нулевой указатель на элемент списка
+        // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
         throw ListExceptions(EXCEPTIONS::NULL_POINTER_TO_A_LIST_ITEM, __LINE__, __FILE__);
     }
     else {
-        // исключение - нулевой указатель на хвост списка
+        // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° С…РІРѕСЃС‚ СЃРїРёСЃРєР°
 //        throw ListExceptions(EXCEPTIONS::NULL_POINTER_TO_THE_TAIL_OF_THE_LIST, __LINE__, __FILE__);
         std::cout << std::endl;
     }
 }
 
-// МЕТОД удаления элемента из головы списка
+// РњР•РўРћР” СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РёР· РіРѕР»РѕРІС‹ СЃРїРёСЃРєР°
 template <typename T>
 void List<T>::DeleteFromHead() {
     if (head) {
@@ -114,12 +110,12 @@ void List<T>::DeleteFromHead() {
         if (head) head->prev = nullptr;
     }
     else {
-        // исключение - нулевой указатель на голову списка
+        // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
         throw ListExceptions(EXCEPTIONS::NULL_POINTER_TO_THE_HEAD_OF_THE_LIST, __LINE__, __FILE__);
     }
 }
 
-// МЕТОД удаления элемента из хвоста списка
+// РњР•РўРћР” СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РёР· С…РІРѕСЃС‚Р° СЃРїРёСЃРєР°
 template <typename T>
 void List<T>::DeleteFromTail() {
     if (tail) {
@@ -132,12 +128,12 @@ void List<T>::DeleteFromTail() {
         if (tail) tail->next = nullptr;
     }
     else {
-        // исключение - нулевой указатель на хвост списка
+        // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° С…РІРѕСЃС‚ СЃРїРёСЃРєР°
         throw ListExceptions(EXCEPTIONS::NULL_POINTER_TO_THE_TAIL_OF_THE_LIST, __LINE__, __FILE__);
     }
 }
 
-// МЕТОД вставки элемента в заданную позицию списка
+// РњР•РўРћР” РІСЃС‚Р°РІРєРё СЌР»РµРјРµРЅС‚Р° РІ Р·Р°РґР°РЅРЅСѓСЋ РїРѕР·РёС†РёСЋ СЃРїРёСЃРєР°
 template <typename T>
 void List<T>::insertElementInPosition(const size_t insertionPosition) {
     if (insertionPosition && (insertionPosition <= (number + 1))) {
@@ -166,7 +162,7 @@ void List<T>::insertElementInPosition(const size_t insertionPosition) {
                 prevElement = currElement;
                 currElement = currElement->next;
             }
-            // исключение - текущая позиция в списке больше заданной
+            // РёСЃРєР»СЋС‡РµРЅРёРµ - С‚РµРєСѓС‰Р°СЏ РїРѕР·РёС†РёСЏ РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕР№
             throw ListExceptions(
                 EXCEPTIONS::THE_CURRENT_POSITION_IN_THE_LIST_IS_GREATER_THAN_THE_SPECIFIED_ONE,
                 __LINE__,
@@ -174,7 +170,7 @@ void List<T>::insertElementInPosition(const size_t insertionPosition) {
             );
         }
         else {
-            // исключение - номер позиции в списке больше максимального
+            // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ
             throw ListExceptions(
                 EXCEPTIONS::THE_POSITION_NUMBER_IN_THE_LIST_IS_GREATER_THAN_THE_MAXIMUM, __LINE__, __FILE__
             );
@@ -182,19 +178,19 @@ void List<T>::insertElementInPosition(const size_t insertionPosition) {
     }
     else {
         if (insertionPosition) {
-            // исключение - номер позиции в списке больше максимального
+            // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ
             throw ListExceptions(
                 EXCEPTIONS::THE_POSITION_NUMBER_IN_THE_LIST_IS_GREATER_THAN_THE_MAXIMUM, __LINE__, __FILE__
             );
         }
         else {
-            // исключение - номер позиции в списке равен нулю
+            // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ СЂР°РІРµРЅ РЅСѓР»СЋ
             throw ListExceptions(EXCEPTIONS::THE_POSITION_NUMBER_IN_THE_LIST_IS_ZERO, __LINE__, __FILE__);
         }
     }
 }
 
-// МЕТОД удаления элемента на заданной позиции списка
+// РњР•РўРћР” СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РЅР° Р·Р°РґР°РЅРЅРѕР№ РїРѕР·РёС†РёРё СЃРїРёСЃРєР°
 template <typename T>
 void List<T>::deletingItemSpecifiedPosition(const size_t positionToDelete) {
     if (positionToDelete && (positionToDelete <= number)) {
@@ -221,7 +217,7 @@ void List<T>::deletingItemSpecifiedPosition(const size_t positionToDelete) {
                 currElement = nextElement;
                 if (nextElement) nextElement = nextElement->next;
                 else {
-                    // исключение - текущая позиция в списке больше заданной
+                    // РёСЃРєР»СЋС‡РµРЅРёРµ - С‚РµРєСѓС‰Р°СЏ РїРѕР·РёС†РёСЏ РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕР№
                     throw ListExceptions(
                         EXCEPTIONS::THE_CURRENT_POSITION_IN_THE_LIST_IS_GREATER_THAN_THE_SPECIFIED_ONE,
                         __LINE__,
@@ -229,7 +225,7 @@ void List<T>::deletingItemSpecifiedPosition(const size_t positionToDelete) {
                     );
                 }
             }
-            // исключение - текущая позиция в списке больше заданной
+            // РёСЃРєР»СЋС‡РµРЅРёРµ - С‚РµРєСѓС‰Р°СЏ РїРѕР·РёС†РёСЏ РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕР№
             throw ListExceptions(
                 EXCEPTIONS::THE_CURRENT_POSITION_IN_THE_LIST_IS_GREATER_THAN_THE_SPECIFIED_ONE,
                 __LINE__,
@@ -237,7 +233,7 @@ void List<T>::deletingItemSpecifiedPosition(const size_t positionToDelete) {
             );
         }
         else {
-            // исключение - номер позиции в списке больше максимального
+            // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ
             throw ListExceptions(
                 EXCEPTIONS::THE_POSITION_NUMBER_IN_THE_LIST_IS_GREATER_THAN_THE_MAXIMUM, __LINE__, __FILE__
             );
@@ -245,19 +241,19 @@ void List<T>::deletingItemSpecifiedPosition(const size_t positionToDelete) {
     }
     else {
         if (positionToDelete) {
-            // исключение - номер позиции в списке больше максимального
+            // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ
             throw ListExceptions(
                 EXCEPTIONS::THE_POSITION_NUMBER_IN_THE_LIST_IS_GREATER_THAN_THE_MAXIMUM, __LINE__, __FILE__
             );
         }
         else {
-            // исключение - номер позиции в списке равен нулю
+            // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ СЂР°РІРµРЅ РЅСѓР»СЋ
             throw ListExceptions(EXCEPTIONS::THE_POSITION_NUMBER_IN_THE_LIST_IS_ZERO, __LINE__, __FILE__);
         }
     }
 }
 
-// МЕТОД поиска позиции элемента с определенным значением
+// РњР•РўРћР” РїРѕРёСЃРєР° РїРѕР·РёС†РёРё СЌР»РµРјРµРЅС‚Р° СЃ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј
 template <typename T>
 size_t List<T>::searchForItemPositionWithSpecificValue(const T value) const {
     if (head) {
@@ -269,16 +265,16 @@ size_t List<T>::searchForItemPositionWithSpecificValue(const T value) const {
         return 0;
     }
     else {
-        // исключение - нулевой указатель на голову списка
+        // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
         throw ListExceptions(EXCEPTIONS::NULL_POINTER_TO_THE_HEAD_OF_THE_LIST, __LINE__, __FILE__);
     }
 }
 
-// МЕТОД поиска и замены элемента с определенным значением
+// РњР•РўРћР” РїРѕРёСЃРєР° Рё Р·Р°РјРµРЅС‹ СЌР»РµРјРµРЅС‚Р° СЃ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј
 template <typename T>
 int List<T>::findAndReplaceElementWithSpecificValue(const T previousValue, const T newValue) {
     if (head) {
-        int numberElementsFound{ 0 };       // количество найденных элементов
+        int numberElementsFound{ 0 };       // РєРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ
         Elem<T>* currElement{ head };
         for (size_t i = 1; i <= number; i++) {
             if (previousValue == currElement->value) {
@@ -291,12 +287,12 @@ int List<T>::findAndReplaceElementWithSpecificValue(const T previousValue, const
         else return -1;
     }
     else {
-        // исключение - нулевой указатель на голову списка
+        // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
         throw ListExceptions(EXCEPTIONS::NULL_POINTER_TO_THE_HEAD_OF_THE_LIST, __LINE__, __FILE__);
     }
 }
 
-// МЕТОД переворота списка
+// РњР•РўРћР” РїРµСЂРµРІРѕСЂРѕС‚Р° СЃРїРёСЃРєР°
 template <typename T>
 void List<T>::flipList() {
     if (head) {
@@ -317,7 +313,7 @@ void List<T>::flipList() {
         }
     }
     else {
-        // исключение - нулевой указатель на голову списка
+        // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
         throw ListExceptions(EXCEPTIONS::NULL_POINTER_TO_THE_HEAD_OF_THE_LIST, __LINE__, __FILE__);
     }
 }

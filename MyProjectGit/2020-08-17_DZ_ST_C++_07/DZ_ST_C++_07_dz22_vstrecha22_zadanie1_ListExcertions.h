@@ -1,39 +1,39 @@
-// DZ_ST_C++_07_dz22_vstrecha22_zadanie1_ListExcertions.h
+п»ї// DZ_ST_C++_07_dz22_vstrecha22_zadanie1_ListExcertions.h
 //
-// Задание из файла DZ_ST_C++_07.pdf
-// Домашнее задание №22
-// Встреча №22, задание 1
-// Тема: Исключения
+// Р—Р°РґР°РЅРёРµ РёР· С„Р°Р№Р»Р° DZ_ST_C++_07.pdf
+// Р”РѕРјР°С€РЅРµРµ Р·Р°РґР°РЅРёРµ в„–22
+// Р’СЃС‚СЂРµС‡Р° в„–22, Р·Р°РґР°РЅРёРµ 1
+// РўРµРјР°: РСЃРєР»СЋС‡РµРЅРёСЏ
 /*
-Добавьте в класс двусвязного списка механизм обработки исключений.
-На ваш выбор генерируйте исключения в случае ошибок.
-Например, нехватка памяти, попытка удаления из пустого списка и т.д.
+Р”РѕР±Р°РІСЊС‚Рµ РІ РєР»Р°СЃСЃ РґРІСѓСЃРІСЏР·РЅРѕРіРѕ СЃРїРёСЃРєР° РјРµС…Р°РЅРёР·Рј РѕР±СЂР°Р±РѕС‚РєРё РёСЃРєР»СЋС‡РµРЅРёР№.
+РќР° РІР°С€ РІС‹Р±РѕСЂ РіРµРЅРµСЂРёСЂСѓР№С‚Рµ РёСЃРєР»СЋС‡РµРЅРёСЏ РІ СЃР»СѓС‡Р°Рµ РѕС€РёР±РѕРє.
+РќР°РїСЂРёРјРµСЂ, РЅРµС…РІР°С‚РєР° РїР°РјСЏС‚Рё, РїРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ РёР· РїСѓСЃС‚РѕРіРѕ СЃРїРёСЃРєР° Рё С‚.Рґ.
 */
 
 #pragma once
 #include <iostream>
 
 
-// КЛАСС-ПЕРЕЧИСЛЕНИЕ исключений
+// РљР›РђРЎРЎ-РџР•Р Р•Р§РРЎР›Р•РќРР• РёСЃРєР»СЋС‡РµРЅРёР№
 enum class EXCEPTIONS {
-    NO_EXCEPTIONS,                                          // нет исключений (значение инициализации)
-    NULL_POINTER_TO_THE_HEAD_OF_THE_LIST,                   // нулевой указатель на голову списка
-    NULL_POINTER_TO_THE_TAIL_OF_THE_LIST,                   // нулевой указатель на хвост списка
-    NULL_POINTER_TO_A_LIST_ITEM,                            // нулевой указатель на элемент списка
-    THE_POSITION_NUMBER_IN_THE_LIST_IS_ZERO,                // номер позиции в списке равен нулю
-    THE_POSITION_NUMBER_IN_THE_LIST_IS_NEGATIVE,            // номер позиции в списке отрицательный
-    THE_POSITION_NUMBER_IN_THE_LIST_IS_GREATER_THAN_THE_MAXIMUM,   // номер позиции в списке больше максимального
-    THE_CURRENT_POSITION_IN_THE_LIST_IS_GREATER_THAN_THE_SPECIFIED_ONE, // текущая позиция в списке больше заданной
-    INVALID_CLASS_INSTANCE_TYPE                             // недопустимый тип экземпляра класса
+    NO_EXCEPTIONS,                                          // РЅРµС‚ РёСЃРєР»СЋС‡РµРЅРёР№ (Р·РЅР°С‡РµРЅРёРµ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё)
+    NULL_POINTER_TO_THE_HEAD_OF_THE_LIST,                   // РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
+    NULL_POINTER_TO_THE_TAIL_OF_THE_LIST,                   // РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° С…РІРѕСЃС‚ СЃРїРёСЃРєР°
+    NULL_POINTER_TO_A_LIST_ITEM,                            // РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
+    THE_POSITION_NUMBER_IN_THE_LIST_IS_ZERO,                // РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ СЂР°РІРµРЅ РЅСѓР»СЋ
+    THE_POSITION_NUMBER_IN_THE_LIST_IS_NEGATIVE,            // РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№
+    THE_POSITION_NUMBER_IN_THE_LIST_IS_GREATER_THAN_THE_MAXIMUM,   // РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ
+    THE_CURRENT_POSITION_IN_THE_LIST_IS_GREATER_THAN_THE_SPECIFIED_ONE, // С‚РµРєСѓС‰Р°СЏ РїРѕР·РёС†РёСЏ РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕР№
+    INVALID_CLASS_INSTANCE_TYPE                             // РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№ С‚РёРї СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР°
 };
 
 
-// КЛАСС исключений для класса Список
+// РљР›РђРЎРЎ РёСЃРєР»СЋС‡РµРЅРёР№ РґР»СЏ РєР»Р°СЃСЃР° РЎРїРёСЃРѕРє
 class ListExceptions {
 private:
-    EXCEPTIONS exception{ EXCEPTIONS::NO_EXCEPTIONS };  // значение исключения
-    int lineNumber{ 0 };                                // номер строки генерации исключения
-    const char* nameFile;                               // имя файла генерации исключения
+    EXCEPTIONS exception{ EXCEPTIONS::NO_EXCEPTIONS };  // Р·РЅР°С‡РµРЅРёРµ РёСЃРєР»СЋС‡РµРЅРёСЏ
+    int lineNumber{ 0 };                                // РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё РіРµРЅРµСЂР°С†РёРё РёСЃРєР»СЋС‡РµРЅРёСЏ
+    const char* nameFile;                               // РёРјСЏ С„Р°Р№Р»Р° РіРµРЅРµСЂР°С†РёРё РёСЃРєР»СЋС‡РµРЅРёСЏ
 public:
     ListExceptions(EXCEPTIONS exception_, int lineNumber_, const char* nameFile_) :
         exception(exception_), lineNumber(lineNumber_), nameFile(nameFile_)

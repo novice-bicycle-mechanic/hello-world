@@ -1,64 +1,64 @@
-// DZ_ST_C++_07_dz22_vstrecha22_zadanie2_MemoryExceptions.h
+п»ї// DZ_ST_C++_07_dz22_vstrecha22_zadanie2_MemoryExceptions.h
 #pragma once
 #include <iostream>
 #include "DZ_ST_C++_07_dz22_vstrecha22_zadanie2_MainParentException.h"
 
 
-// КЛАСС-ПЕРЕЧИСЛЕНИЕ кодов исключений памяти
+// РљР›РђРЎРЎ-РџР•Р Р•Р§РРЎР›Р•РќРР• РєРѕРґРѕРІ РёСЃРєР»СЋС‡РµРЅРёР№ РїР°РјСЏС‚Рё
 enum class MEMORY_EXCEPT {
-	NONE,													// ничто - значение для инициализации
-	NOT_ENOUGH_STACK_MEMORY,								// недостаточно стековой памяти
-	NOT_ENOUGH_DYNAMIC_MEMORY,								// недостаточно динамической памяти
-	DYNAMIC_MEMORY_IS_NOT_ALLOCATED,						// динамическая память не выделена
-	THE_ALLOCATED_DYNAMIC_MEMORY_WAS_NOT_DELETED,			// выделенная динамическая память не удалена
+	NONE,													// РЅРёС‡С‚Рѕ - Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
+	NOT_ENOUGH_STACK_MEMORY,								// РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃС‚РµРєРѕРІРѕР№ РїР°РјСЏС‚Рё
+	NOT_ENOUGH_DYNAMIC_MEMORY,								// РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРёРЅР°РјРёС‡РµСЃРєРѕР№ РїР°РјСЏС‚Рё
+	DYNAMIC_MEMORY_IS_NOT_ALLOCATED,						// РґРёРЅР°РјРёС‡РµСЃРєР°СЏ РїР°РјСЏС‚СЊ РЅРµ РІС‹РґРµР»РµРЅР°
+	THE_ALLOCATED_DYNAMIC_MEMORY_WAS_NOT_DELETED,			// РІС‹РґРµР»РµРЅРЅР°СЏ РґРёРЅР°РјРёС‡РµСЃРєР°СЏ РїР°РјСЏС‚СЊ РЅРµ СѓРґР°Р»РµРЅР°
 };
 
-// КЛАСС собственно исключений памяти
+// РљР›РђРЎРЎ СЃРѕР±СЃС‚РІРµРЅРЅРѕ РёСЃРєР»СЋС‡РµРЅРёР№ РїР°РјСЏС‚Рё
 class MemoryExcept {
 private:
-	MEMORY_EXCEPT exception{ MEMORY_EXCEPT::NONE };         // исключение
+	MEMORY_EXCEPT exception{ MEMORY_EXCEPT::NONE };         // РёСЃРєР»СЋС‡РµРЅРёРµ
 public:
-	// КОНСТРУКТОР с параметрами
+	// РљРћРќРЎРўР РЈРљРўРћР  СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
 	MemoryExcept(MEMORY_EXCEPT exception_) : exception(exception_) {}
 
-	// ОБЪЯВЛЕНИЕ дружественной ФУНКЦИИ перегрузки оператора <<
-	// для вывода сообщения исключения на экран
+	// РћР‘РЄРЇР’Р›Р•РќРР• РґСЂСѓР¶РµСЃС‚РІРµРЅРЅРѕР№ Р¤РЈРќРљР¦РР РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° <<
+	// РґР»СЏ РІС‹РІРѕРґР° СЃРѕРѕР±С‰РµРЅРёСЏ РёСЃРєР»СЋС‡РµРЅРёСЏ РЅР° СЌРєСЂР°РЅ
 	friend std::ostream& operator<<(std::ostream& out, const MemoryExcept& memoryExcept);
 };
 
-// Дружественная ФУНКЦИЯ перегрузки оператора << для вывода сообщения исключения на экран
+// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° << РґР»СЏ РІС‹РІРѕРґР° СЃРѕРѕР±С‰РµРЅРёСЏ РёСЃРєР»СЋС‡РµРЅРёСЏ РЅР° СЌРєСЂР°РЅ
 std::ostream& operator<<(std::ostream& out, const MemoryExcept& memoryExcept) {
 	switch (memoryExcept.exception)
 	{
 	case MEMORY_EXCEPT::NONE: {
-		out << " Ничто";
+		out << " РќРёС‡С‚Рѕ";
 		break;
 	}
 	case MEMORY_EXCEPT::NOT_ENOUGH_STACK_MEMORY: {
-		out << " Недостаточно стековой памяти";
+		out << " РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃС‚РµРєРѕРІРѕР№ РїР°РјСЏС‚Рё";
 		break;
 	}
 	case MEMORY_EXCEPT::NOT_ENOUGH_DYNAMIC_MEMORY: {
-		out << " Недостаточно динамической памяти";
+		out << " РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґРёРЅР°РјРёС‡РµСЃРєРѕР№ РїР°РјСЏС‚Рё";
 		break;
 	}
 	case MEMORY_EXCEPT::DYNAMIC_MEMORY_IS_NOT_ALLOCATED: {
-		out << " Динамическая память не выделена";
+		out << " Р”РёРЅР°РјРёС‡РµСЃРєР°СЏ РїР°РјСЏС‚СЊ РЅРµ РІС‹РґРµР»РµРЅР°";
 		break;
 	}
 	case MEMORY_EXCEPT::THE_ALLOCATED_DYNAMIC_MEMORY_WAS_NOT_DELETED: {
-		out << " Выделенная динамическая память не удалена";
+		out << " Р’С‹РґРµР»РµРЅРЅР°СЏ РґРёРЅР°РјРёС‡РµСЃРєР°СЏ РїР°РјСЏС‚СЊ РЅРµ СѓРґР°Р»РµРЅР°";
 		break;
 	}
 	}
 	return out;
 }
 
-// ДОЧЕРНИЙ КЛАСС исключений памяти с дополнительной информацией
+// Р”РћР§Р•Р РќРР™ РљР›РђРЎРЎ РёСЃРєР»СЋС‡РµРЅРёР№ РїР°РјСЏС‚Рё СЃ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРµР№
 class MemoryExceptions : public MainParentException<MemoryExcept> {
 public:
-	// КОНСТРУКТОР дочернего класса с параметрами,
-	// вызывает конструктор родительского класса
+	// РљРћРќРЎРўР РЈРљРўРћР  РґРѕС‡РµСЂРЅРµРіРѕ РєР»Р°СЃСЃР° СЃ РїР°СЂР°РјРµС‚СЂР°РјРё,
+	// РІС‹Р·С‹РІР°РµС‚ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РєР»Р°СЃСЃР°
 	MemoryExceptions(MemoryExcept exception_, int lineNumber_, const char* nameFile_) :
 		MainParentException(exception_, lineNumber_, nameFile_)
 	{}

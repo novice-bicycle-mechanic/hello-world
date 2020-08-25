@@ -1,9 +1,9 @@
-// DZ_ST_C++_07_dz22_vstrecha22_zadanie1_ListExcertions.cpp
-
+п»ї// DZ_ST_C++_07_dz22_vstrecha22_zadanie1_ListExcertions.cpp
+#pragma once
 #include "DZ_ST_C++_07_dz22_vstrecha22_zadanie1_ListExcertions.h"
 
 
-// Дружественная ФУНКЦИЯ перегрузки оператора << для вывода сообщения исключения
+// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° << РґР»СЏ РІС‹РІРѕРґР° СЃРѕРѕР±С‰РµРЅРёСЏ РёСЃРєР»СЋС‡РµРЅРёСЏ
 std::ostream& operator<<(std::ostream& out, const ListExceptions& except) {
     switch (except.exception)
     {
@@ -11,60 +11,60 @@ std::ostream& operator<<(std::ostream& out, const ListExceptions& except) {
         break;
     }
     case EXCEPTIONS::NULL_POINTER_TO_THE_HEAD_OF_THE_LIST: {
-        out << " Ошибка!\n"
-            << " Файл " << except.nameFile << "\n"
-            << " Строка " << except.lineNumber << ":"
-            << " нулевой указатель на голову списка";
+        out << " РћС€РёР±РєР°!\n"
+            << " Р¤Р°Р№Р» " << except.nameFile << "\n"
+            << " РЎС‚СЂРѕРєР° " << except.lineNumber << ":"
+            << " РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°";
         break;
     }
     case EXCEPTIONS::NULL_POINTER_TO_THE_TAIL_OF_THE_LIST: {
-        out << " Ошибка!\n"
-            << " Файл " << except.nameFile << "\n"
-            << " Строка " << except.lineNumber << ":"
-            << " нулевой указатель на хвост списка";
+        out << " РћС€РёР±РєР°!\n"
+            << " Р¤Р°Р№Р» " << except.nameFile << "\n"
+            << " РЎС‚СЂРѕРєР° " << except.lineNumber << ":"
+            << " РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° С…РІРѕСЃС‚ СЃРїРёСЃРєР°";
         break;
     }
     case EXCEPTIONS::NULL_POINTER_TO_A_LIST_ITEM: {
-        out << " Ошибка!\n"
-            << " Файл " << except.nameFile << "\n"
-            << " Строка " << except.lineNumber << ":"
-            << " нулевой указатель на элемент списка";
+        out << " РћС€РёР±РєР°!\n"
+            << " Р¤Р°Р№Р» " << except.nameFile << "\n"
+            << " РЎС‚СЂРѕРєР° " << except.lineNumber << ":"
+            << " РЅСѓР»РµРІРѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°";
         break;
     }
     case EXCEPTIONS::THE_POSITION_NUMBER_IN_THE_LIST_IS_ZERO: {
-        out << " Ошибка!\n"
-            << " Файл " << except.nameFile << "\n"
-            << " Строка " << except.lineNumber << ":"
-            << " номер позиции в списке равен нулю";
+        out << " РћС€РёР±РєР°!\n"
+            << " Р¤Р°Р№Р» " << except.nameFile << "\n"
+            << " РЎС‚СЂРѕРєР° " << except.lineNumber << ":"
+            << " РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ СЂР°РІРµРЅ РЅСѓР»СЋ";
         break;
     }
     case EXCEPTIONS::THE_POSITION_NUMBER_IN_THE_LIST_IS_NEGATIVE: {
-        out << " Ошибка!\n"
-            << " Файл " << except.nameFile << "\n"
-            << " Строка " << except.lineNumber << ":"
-            << " номер позиции в списке меньше нуля";
+        out << " РћС€РёР±РєР°!\n"
+            << " Р¤Р°Р№Р» " << except.nameFile << "\n"
+            << " РЎС‚СЂРѕРєР° " << except.lineNumber << ":"
+            << " РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ РјРµРЅСЊС€Рµ РЅСѓР»СЏ";
         break;
     }
     case EXCEPTIONS::THE_POSITION_NUMBER_IN_THE_LIST_IS_GREATER_THAN_THE_MAXIMUM: {
-        out << " Ошибка!\n"
-            << " Файл " << except.nameFile << "\n"
-            << " Строка " << except.lineNumber << ":"
-            << " номер позиции в списке больше максимального";
+        out << " РћС€РёР±РєР°!\n"
+            << " Р¤Р°Р№Р» " << except.nameFile << "\n"
+            << " РЎС‚СЂРѕРєР° " << except.lineNumber << ":"
+            << " РЅРѕРјРµСЂ РїРѕР·РёС†РёРё РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ";
         break;
     }
     case EXCEPTIONS::THE_CURRENT_POSITION_IN_THE_LIST_IS_GREATER_THAN_THE_SPECIFIED_ONE: {
-        out << " Ошибка!\n"
-            << " Файл " << except.nameFile << "\n"
-            << " Строка " << except.lineNumber << ":"
-            << " текущая позиция в списке больше заданной";
+        out << " РћС€РёР±РєР°!\n"
+            << " Р¤Р°Р№Р» " << except.nameFile << "\n"
+            << " РЎС‚СЂРѕРєР° " << except.lineNumber << ":"
+            << " С‚РµРєСѓС‰Р°СЏ РїРѕР·РёС†РёСЏ РІ СЃРїРёСЃРєРµ Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕР№";
         break;
     }
     case EXCEPTIONS::INVALID_CLASS_INSTANCE_TYPE: {
-        out << " Ошибка!\n"
-            << " Файл " << except.nameFile << "\n"
-            << " Строка " << except.lineNumber << ":"
-            << " недопустимый тип экземпляра класса.\n"
-            << " Разрешены: short, unsigned short, int, unsigned int,\n"
+        out << " РћС€РёР±РєР°!\n"
+            << " Р¤Р°Р№Р» " << except.nameFile << "\n"
+            << " РЎС‚СЂРѕРєР° " << except.lineNumber << ":"
+            << " РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№ С‚РёРї СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР°.\n"
+            << " Р Р°Р·СЂРµС€РµРЅС‹: short, unsigned short, int, unsigned int,\n"
             << " long, unsigned long, long long, unsigned long long";
         break;
     }

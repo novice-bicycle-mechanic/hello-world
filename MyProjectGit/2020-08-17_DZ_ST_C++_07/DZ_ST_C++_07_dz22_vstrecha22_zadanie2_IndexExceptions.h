@@ -1,64 +1,64 @@
-// DZ_ST_C++_07_dz22_vstrecha22_zadanie2_IndexExceptions.h
+п»ї// DZ_ST_C++_07_dz22_vstrecha22_zadanie2_IndexExceptions.h
 #pragma once
 #include <iostream>
 #include "DZ_ST_C++_07_dz22_vstrecha22_zadanie2_MainParentException.h"
 
 
-// КЛАСС-ПЕРЕЧИСЛЕНИЕ кодов исключений индексов
+// РљР›РђРЎРЎ-РџР•Р Р•Р§РРЎР›Р•РќРР• РєРѕРґРѕРІ РёСЃРєР»СЋС‡РµРЅРёР№ РёРЅРґРµРєСЃРѕРІ
 enum class INDEX_EXCEPT {
-	NONE,													// ничто - значение для инициализации
-	THE_INDEX_VALUE_IS_LESS_THAN_ZERO,						// значение индекса меньше нуля
-	THE_INDEX_VALUE_IS_LESS_THAN_THE_SPECIFIED_VALUE,		// значение индекса меньше заданного
-	THE_INDEX_VALUE_IS_GREATER_THAN_THE_MAXIMUM,			// значение индекса больше максимального
-	THE_INDEX_VALUE_IS_GREATER_THAN_THE_SPECIFIED_VALUE,	// значение индекса больше заданного
+	NONE,													// РЅРёС‡С‚Рѕ - Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
+	THE_INDEX_VALUE_IS_LESS_THAN_ZERO,						// Р·РЅР°С‡РµРЅРёРµ РёРЅРґРµРєСЃР° РјРµРЅСЊС€Рµ РЅСѓР»СЏ
+	THE_INDEX_VALUE_IS_LESS_THAN_THE_SPECIFIED_VALUE,		// Р·РЅР°С‡РµРЅРёРµ РёРЅРґРµРєСЃР° РјРµРЅСЊС€Рµ Р·Р°РґР°РЅРЅРѕРіРѕ
+	THE_INDEX_VALUE_IS_GREATER_THAN_THE_MAXIMUM,			// Р·РЅР°С‡РµРЅРёРµ РёРЅРґРµРєСЃР° Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ
+	THE_INDEX_VALUE_IS_GREATER_THAN_THE_SPECIFIED_VALUE,	// Р·РЅР°С‡РµРЅРёРµ РёРЅРґРµРєСЃР° Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕРіРѕ
 };
 
-// КЛАСС собственно исключений индексов
+// РљР›РђРЎРЎ СЃРѕР±СЃС‚РІРµРЅРЅРѕ РёСЃРєР»СЋС‡РµРЅРёР№ РёРЅРґРµРєСЃРѕРІ
 class IndexExcept {
 private:
-	INDEX_EXCEPT exception{ INDEX_EXCEPT::NONE };         // исключение
+	INDEX_EXCEPT exception{ INDEX_EXCEPT::NONE };         // РёСЃРєР»СЋС‡РµРЅРёРµ
 public:
-	// КОНСТРУКТОР с параметрами
+	// РљРћРќРЎРўР РЈРљРўРћР  СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
 	IndexExcept(INDEX_EXCEPT exception_) : exception(exception_) {}
 
-	// ОБЪЯВЛЕНИЕ дружественной ФУНКЦИИ перегрузки оператора <<
-	// для вывода сообщения исключения на экран
+	// РћР‘РЄРЇР’Р›Р•РќРР• РґСЂСѓР¶РµСЃС‚РІРµРЅРЅРѕР№ Р¤РЈРќРљР¦РР РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° <<
+	// РґР»СЏ РІС‹РІРѕРґР° СЃРѕРѕР±С‰РµРЅРёСЏ РёСЃРєР»СЋС‡РµРЅРёСЏ РЅР° СЌРєСЂР°РЅ
 	friend std::ostream& operator<<(std::ostream& out, const IndexExcept& indexExcept);
 };
 
-// Дружественная ФУНКЦИЯ перегрузки оператора << для вывода сообщения исключения на экран
+// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° << РґР»СЏ РІС‹РІРѕРґР° СЃРѕРѕР±С‰РµРЅРёСЏ РёСЃРєР»СЋС‡РµРЅРёСЏ РЅР° СЌРєСЂР°РЅ
 std::ostream& operator<<(std::ostream& out, const IndexExcept& indexExcept) {
 	switch (indexExcept.exception)
 	{
 	case INDEX_EXCEPT::NONE: {
-		out << " Ничто";
+		out << " РќРёС‡С‚Рѕ";
 		break;
 	}
 	case INDEX_EXCEPT::THE_INDEX_VALUE_IS_LESS_THAN_ZERO: {
-		out << " Значение индекса меньше нуля";
+		out << " Р—РЅР°С‡РµРЅРёРµ РёРЅРґРµРєСЃР° РјРµРЅСЊС€Рµ РЅСѓР»СЏ";
 		break;
 	}
 	case INDEX_EXCEPT::THE_INDEX_VALUE_IS_LESS_THAN_THE_SPECIFIED_VALUE: {
-		out << " Значение индекса меньше заданного";
+		out << " Р—РЅР°С‡РµРЅРёРµ РёРЅРґРµРєСЃР° РјРµРЅСЊС€Рµ Р·Р°РґР°РЅРЅРѕРіРѕ";
 		break;
 	}
 	case INDEX_EXCEPT::THE_INDEX_VALUE_IS_GREATER_THAN_THE_MAXIMUM: {
-		out << " Значение индекса больше максимального";
+		out << " Р—РЅР°С‡РµРЅРёРµ РёРЅРґРµРєСЃР° Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ";
 		break;
 	}
 	case INDEX_EXCEPT::THE_INDEX_VALUE_IS_GREATER_THAN_THE_SPECIFIED_VALUE: {
-		out << " Значение индекса больше заданного";
+		out << " Р—РЅР°С‡РµРЅРёРµ РёРЅРґРµРєСЃР° Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕРіРѕ";
 		break;
 	}
 	}
 	return out;
 }
 
-// ДОЧЕРНИЙ КЛАСС исключений индексов с дополнительной информацией
+// Р”РћР§Р•Р РќРР™ РљР›РђРЎРЎ РёСЃРєР»СЋС‡РµРЅРёР№ РёРЅРґРµРєСЃРѕРІ СЃ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРµР№
 class IndexExceptions : public MainParentException<IndexExcept> {
 public:
-	// КОНСТРУКТОР дочернего класса с параметрами,
-	// вызывает конструктор родительского класса
+	// РљРћРќРЎРўР РЈРљРўРћР  РґРѕС‡РµСЂРЅРµРіРѕ РєР»Р°СЃСЃР° СЃ РїР°СЂР°РјРµС‚СЂР°РјРё,
+	// РІС‹Р·С‹РІР°РµС‚ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РєР»Р°СЃСЃР°
 	IndexExceptions(IndexExcept exception_, int lineNumber_, const char* nameFile_) :
 		MainParentException(exception_, lineNumber_, nameFile_)
 	{}

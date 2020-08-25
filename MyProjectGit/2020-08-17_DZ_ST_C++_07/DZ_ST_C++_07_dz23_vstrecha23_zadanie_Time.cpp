@@ -1,22 +1,22 @@
-// DZ_ST_C++_07_dz23_vstrecha23_zadanie_Time.cpp
+п»ї// DZ_ST_C++_07_dz23_vstrecha23_zadanie_Time.cpp
 //
-// задание 1 из файла Domasnee_zadanie_1594661480.txt
-// Выполните домашние задания после уроков 3, 4, 5
-// Урок 5. Задание 1
+// Р·Р°РґР°РЅРёРµ 1 РёР· С„Р°Р№Р»Р° Domasnee_zadanie_1594661480.txt
+// Р’С‹РїРѕР»РЅРёС‚Рµ РґРѕРјР°С€РЅРёРµ Р·Р°РґР°РЅРёСЏ РїРѕСЃР»Рµ СѓСЂРѕРєРѕРІ 3, 4, 5
+// РЈСЂРѕРє 5. Р—Р°РґР°РЅРёРµ 1
 /*
-1. Создайте класс Время, в котором реализованы операции
-сложения, вычитания, сравнения, ввода и вывода на экран,
-возможность конвертации времени из американского формата
+1. РЎРѕР·РґР°Р№С‚Рµ РєР»Р°СЃСЃ Р’СЂРµРјСЏ, РІ РєРѕС‚РѕСЂРѕРј СЂРµР°Р»РёР·РѕРІР°РЅС‹ РѕРїРµСЂР°С†РёРё
+СЃР»РѕР¶РµРЅРёСЏ, РІС‹С‡РёС‚Р°РЅРёСЏ, СЃСЂР°РІРЅРµРЅРёСЏ, РІРІРѕРґР° Рё РІС‹РІРѕРґР° РЅР° СЌРєСЂР°РЅ,
+РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РєРѕРЅРІРµСЂС‚Р°С†РёРё РІСЂРµРјРµРЅРё РёР· Р°РјРµСЂРёРєР°РЅСЃРєРѕРіРѕ С„РѕСЂРјР°С‚Р°
 am (pm): 10:00 pm = 22:00, 12:00 pm =00:00.
 */
 #pragma once
 #include <iostream>
 #include "DZ_ST_C++_07_dz23_vstrecha23_zadanie_Time.h"
 
-namespace datetime
+namespace spaceTime
 {
 
-	// дружественная функция вывода объекта в консоль перегрузкой оператора <<
+	// РґСЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РІС‹РІРѕРґР° РѕР±СЉРµРєС‚Р° РІ РєРѕРЅСЃРѕР»СЊ РїРµСЂРµРіСЂСѓР·РєРѕР№ РѕРїРµСЂР°С‚РѕСЂР° <<
 	std::ostream& operator<<(std::ostream& out, const Time& time) {
 		out
 			<< (time.hour < 10 ? "0" : "")
@@ -32,7 +32,7 @@ namespace datetime
 	}
 
 
-	// дружественная функция вывода объекта в консоль перегрузкой оператора >>
+	// РґСЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РІС‹РІРѕРґР° РѕР±СЉРµРєС‚Р° РІ РєРѕРЅСЃРѕР»СЊ РїРµСЂРµРіСЂСѓР·РєРѕР№ РѕРїРµСЂР°С‚РѕСЂР° >>
 	std::istream& operator>>(std::istream& in, Time& time1) {
 		Time temp;
 		in >> temp.hour;
@@ -47,7 +47,7 @@ namespace datetime
 	}
 
 
-	// Дружественная ФУНКЦИЯ перегрузки оператора +
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° +
 	Time operator+(const Time& time1, const Time& time2) {
 		Time time3;
 		size_t buffer_hour{ 0 };
@@ -74,7 +74,7 @@ namespace datetime
 		return time3;
 	}
 
-	// Дружественная ФУНКЦИЯ перегрузки оператора -
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° -
 	Time operator-(const Time& timeFirst, const Time& timeSecond) {
 		Time time1;
 		Time time2;
@@ -96,7 +96,7 @@ namespace datetime
 		return time3;
 	}
 
-	// Дружественная ФУНКЦИЯ перегрузки оператора ==
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° ==
 	bool operator==(const Time& time1, const Time& time2) {
 		return
 			(time1.hour == time2.hour) &&
@@ -104,7 +104,7 @@ namespace datetime
 			(time1.second == time2.second);
 	}
 
-	// Дружественная ФУНКЦИЯ перегрузки оператора !=
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° !=
 	bool operator!=(const Time& time1, const Time& time2) {
 		return
 			(time1.hour != time2.hour) ||
@@ -112,7 +112,7 @@ namespace datetime
 			(time1.second != time2.second);
 	}
 
-	// Дружественная ФУНКЦИЯ перегрузки оператора >
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° >
 	bool operator>(const Time& time1, const Time& time2) {
 		return
 			(time1.hour > time2.hour) ||
@@ -120,12 +120,54 @@ namespace datetime
 			((time1.hour == time2.hour) && (time1.minute == time2.minute) && (time1.second > time2.second));
 	}
 
-	// Дружественная ФУНКЦИЯ перегрузки оператора <
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° <
 	bool operator<(const Time& time1, const Time& time2) {
 		return
 			(time1.hour < time2.hour) ||
 			((time1.hour == time2.hour) && (time1.minute < time2.minute)) ||
 			((time1.hour == time2.hour) && (time1.minute == time2.minute) && (time1.second < time2.second));
 	}
+
+
+
+	// Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ Р¤РЈРќРљР¦РРЇ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° +
+	Test operator+(const Test& time1, const Test& time2) {
+		Test time3;
+		size_t buffer_hour{ 0 };
+		size_t buffer_minute{ 0 };
+
+		time3.second = (
+			(time1.second + time2.second) > 60 ?
+			(++buffer_minute, time1.second + time2.second - 60) :
+			(time1.second + time2.second)
+			);
+
+		time3.minute = (
+			(time1.minute + time2.minute + buffer_minute) > 60 ?
+			(++buffer_hour, time1.minute + time2.minute + buffer_minute - 60) :
+			(time1.minute + time2.minute + buffer_minute)
+			);
+
+		time3.hour = (
+			(time1.hour + time2.hour + buffer_hour) > 23 ?
+			(time1.hour + time2.hour + buffer_hour - 24) :
+			(time1.hour + time2.hour + buffer_hour)
+			);
+
+		return time3;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

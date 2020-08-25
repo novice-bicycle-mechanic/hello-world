@@ -1,84 +1,97 @@
-// DZ_ST_C++_07_dz23_vstrecha23_zadanie_Matrix_main.cpp
+п»ї// DZ_ST_C++_07_dz23_vstrecha23_zadanie_Matrix_main.cpp
 
 
-// задание 1 из файла Domasnee_zadanie_1594661480.txt
-// Выполните домашние задания после уроков 3, 4, 5
-// Урок 5. Задание 2
+// Р·Р°РґР°РЅРёРµ 1 РёР· С„Р°Р№Р»Р° Domasnee_zadanie_1594661480.txt
+// Р’С‹РїРѕР»РЅРёС‚Рµ РґРѕРјР°С€РЅРёРµ Р·Р°РґР°РЅРёСЏ РїРѕСЃР»Рµ СѓСЂРѕРєРѕРІ 3, 4, 5
+// РЈСЂРѕРє 5. Р—Р°РґР°РЅРёРµ 2
 /*
-2.	Создать класс для работы с матрицами.
-Предусмотреть, как минимум, функции для сложения матриц,
-умножения матриц, транспонирования матриц, присваивания
-матриц друг другу, установка и получение произвольного
-элемента матрицы. Необходимо перегрузить соответствующие
-операторы.
+2.	РЎРѕР·РґР°С‚СЊ РєР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РјР°С‚СЂРёС†Р°РјРё.
+РџСЂРµРґСѓСЃРјРѕС‚СЂРµС‚СЊ, РєР°Рє РјРёРЅРёРјСѓРј, С„СѓРЅРєС†РёРё РґР»СЏ СЃР»РѕР¶РµРЅРёСЏ РјР°С‚СЂРёС†,
+СѓРјРЅРѕР¶РµРЅРёСЏ РјР°С‚СЂРёС†, С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРёСЏ РјР°С‚СЂРёС†, РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
+РјР°С‚СЂРёС† РґСЂСѓРі РґСЂСѓРіСѓ, СѓСЃС‚Р°РЅРѕРІРєР° Рё РїРѕР»СѓС‡РµРЅРёРµ РїСЂРѕРёР·РІРѕР»СЊРЅРѕРіРѕ
+СЌР»РµРјРµРЅС‚Р° РјР°С‚СЂРёС†С‹. РќРµРѕР±С…РѕРґРёРјРѕ РїРµСЂРµРіСЂСѓР·РёС‚СЊ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРµ
+РѕРїРµСЂР°С‚РѕСЂС‹.
 */
 #include <iostream>
 #include <clocale>
 #include "DZ_ST_C++_07_dz23_vstrecha23_zadanie_Matrix.h"
-using namespace math;
+using namespace spaceMatrix;
 
 
-// ГЛАВНАЯ ФУНКЦИЯ
+// Р“Р›РђР’РќРђРЇ Р¤РЈРќРљР¦РРЇ
 int main() {
 	setlocale(LC_ALL, "ru");
 
 	Matrix m1;
-	std::cout << " Матрица m1:" << std::endl;
+	std::cout << " РњР°С‚СЂРёС†Р° m1:" << std::endl;
 	std::cout << m1 << std::endl;
 	std::cout << std::endl;
 
 	size_t m = 3;
 	size_t n = 5;
 	Matrix m2(m, n);
-	std::cout << " Матрица m2:" << std::endl;
+	std::cout << " РњР°С‚СЂРёС†Р° m2:" << std::endl;
 	std::cout << m2 << std::endl;
 	std::cout << std::endl;
 
-	std::cout << " Проверка работы индексации двумерного массива" << std::endl;
-	std::cout << " Результат: m2[1][1] == " << m2[1][1] << std::endl;
-	std::cout << " Присвоим значение: m2[1][1] = 11" << std::endl;
+	std::cout << " РџСЂРѕРІРµСЂРєР° СЂР°Р±РѕС‚С‹ РёРЅРґРµРєСЃР°С†РёРё РґРІСѓРјРµСЂРЅРѕРіРѕ РјР°СЃСЃРёРІР°" << std::endl;
+	std::cout << " Р РµР·СѓР»СЊС‚Р°С‚: m2[1][1] == " << m2[1][1] << std::endl;
+	std::cout << " РџСЂРёСЃРІРѕРёРј Р·РЅР°С‡РµРЅРёРµ: m2[1][1] = 11" << std::endl;
 	m2[1][1] = 11;
-	std::cout << " Результат: m2[1][1] == " << m2[1][1] << std::endl;
-	std::cout << " Матрица m2:" << std::endl;
+	std::cout << " Р РµР·СѓР»СЊС‚Р°С‚: m2[1][1] == " << m2[1][1] << std::endl;
+	std::cout << " РњР°С‚СЂРёС†Р° m2:" << std::endl;
 	std::cout << m2 << std::endl;
 	std::cout << std::endl;
 
 	m1 = m2;
-	std::cout << " Матрица m1 = m2:" << std::endl;
+	std::cout << " РњР°С‚СЂРёС†Р° m1 = m2:" << std::endl;
 	std::cout << m1 << std::endl;
 	std::cout << std::endl;
 
 	Matrix m3 = m2;
-	std::cout << " Матрица m3 = m2:" << std::endl;
+	std::cout << " РњР°С‚СЂРёС†Р° m3 = m2:" << std::endl;
 	std::cout << m3 << std::endl;
 	std::cout << std::endl;
 
 	m1 = m2 + m3;
-	std::cout << " Матрица m1 = m2 + m3:" << std::endl;
+	std::cout << " РњР°С‚СЂРёС†Р° m1 = m2 + m3:" << std::endl;
 	std::cout << m1 << std::endl;
 	std::cout << std::endl;
 
 	m3 = m2 - m1;
-	std::cout << " Матрица m3 = m2 - m1:" << std::endl;
+	std::cout << " РњР°С‚СЂРёС†Р° m3 = m2 - m1:" << std::endl;
 	std::cout << m3 << std::endl;
 	std::cout << std::endl;
 
-	std::cout << " Транспонируем матрицу m3" << std::endl;
+	std::cout << " РўСЂР°РЅСЃРїРѕРЅРёСЂСѓРµРј РјР°С‚СЂРёС†Сѓ m3" << std::endl;
 	m3.transpose();
-	std::cout << " Матрица m3:" << std::endl;
+	std::cout << " РњР°С‚СЂРёС†Р° m3:" << std::endl;
 	std::cout << m3 << std::endl;
 	std::cout << std::endl;
 
-	std::cout << " Матрица m2:" << std::endl;
+	std::cout << " РњР°С‚СЂРёС†Р° m2:" << std::endl;
 	std::cout << m2 << std::endl;
 	std::cout << std::endl;
 
 	m1 = m2 * m3;
-	std::cout << " Матрица m1 = m2 * m3:" << std::endl;
+	std::cout << " РњР°С‚СЂРёС†Р° m1 = m2 * m3:" << std::endl;
 	std::cout << m1 << std::endl;
 	std::cout << std::endl;
 
-	//	std::cout << " Конец main()" << std::endl;
+	m = 3;
+	n = 5;
+	Test test(m, n);
+	std::cout << " РњР°С‚СЂРёС†Р° test:" << std::endl;
+	std::cout << test << std::endl;
+	std::cout << std::endl;
+
+	std::cout << " РўСЂР°РЅСЃРїРѕРЅРёСЂСѓРµРј РјР°С‚СЂРёС†Сѓ test" << std::endl;
+	test.transpose();
+	std::cout << " РњР°С‚СЂРёС†Р° test:" << std::endl;
+	std::cout << test << std::endl;
+	std::cout << std::endl;
+
+	//	std::cout << " РљРѕРЅРµС† main()" << std::endl;
 	return 0;
 }
-// Конец ГЛАВНОЙ ФУНКЦИИ
+// РљРѕРЅРµС† Р“Р›РђР’РќРћР™ Р¤РЈРќРљР¦РР

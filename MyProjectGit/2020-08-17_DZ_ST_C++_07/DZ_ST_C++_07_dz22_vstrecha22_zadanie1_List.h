@@ -1,17 +1,19 @@
-// DZ_ST_C++_07_dz22_vstrecha22_zadanie1_List.h
+п»ї// DZ_ST_C++_07_dz22_vstrecha22_zadanie1_List.h
 
 #pragma once
 #include <iostream>
 
-// Шаблон элемента двусвязного списка
+// РЁР°Р±Р»РѕРЅ СЌР»РµРјРµРЅС‚Р° РґРІСѓСЃРІСЏР·РЅРѕРіРѕ СЃРїРёСЃРєР°
 template <typename T>
 struct Elem {
-    T value{ 0 };              // значение элемента
-    Elem<T>* next{ nullptr };  // адрес следующего элемента
-    Elem<T>* prev{ nullptr };  // адрес предыдущего элемента
+    T value{ 0 };              // Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+    Elem<T>* next{ nullptr };  // Р°РґСЂРµСЃ СЃР»РµРґСѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
+    Elem<T>* prev{ nullptr };  // Р°РґСЂРµСЃ РїСЂРµРґС‹РґСѓС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
 };
 
-// Перечисление разрешенных к применению целочисленных типов для класса List
+
+/*
+// РџРµСЂРµС‡РёСЃР»РµРЅРёРµ СЂР°Р·СЂРµС€РµРЅРЅС‹С… Рє РїСЂРёРјРµРЅРµРЅРёСЋ С†РµР»РѕС‡РёСЃР»РµРЅРЅС‹С… С‚РёРїРѕРІ РґР»СЏ РєР»Р°СЃСЃР° List
 enum class TYPES {
 //      type                 int           size_t
     SHORT              = -1022626503, // 3272340793,
@@ -23,83 +25,85 @@ enum class TYPES {
     LONG_LONG          = 1695257516,  // 1695257516,
     UNSIGNED_LONG_LONG = 1712035135,  // 1712035135,
 };
+*/
 
-// Шаблон класса двусвязного списка
+// РЁР°Р±Р»РѕРЅ РєР»Р°СЃСЃР° РґРІСѓСЃРІСЏР·РЅРѕРіРѕ СЃРїРёСЃРєР°
 template <typename T>
 class List {
 private:
-    Elem<T>* head{ nullptr };  // указатель на голову списка
-    Elem<T>* tail{ nullptr };  // указатель на хвост списка
-    size_t number{ 0 };        // количество элементов в списке
-    T count{ 0 };              // номер созданного элемента списка
+    Elem<T>* head{ nullptr };  // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
+    Elem<T>* tail{ nullptr };  // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° С…РІРѕСЃС‚ СЃРїРёСЃРєР°
+    size_t number{ 0 };        // РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ СЃРїРёСЃРєРµ
+    T count{ 0 };              // РЅРѕРјРµСЂ СЃРѕР·РґР°РЅРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° СЃРїРёСЃРєР°
+    //-------------------------
+
 public:
-    // КОНСТРУКТОР по умолчанию
+    // РљРћРќРЎРўР РЈРљРўРћР  РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
     List() {
-//        std::cout << " Конструктор по умолчанию для списка" << std::endl;
+//        std::cout << " РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РґР»СЏ СЃРїРёСЃРєР°" << std::endl;
 //        std::cout << (int)typeid(T).hash_code() << std::endl;
-        TYPES typeList = (TYPES)typeid(T).hash_code();
-        switch (typeList)
-        {
-        case TYPES::SHORT:
-        case TYPES::UNSIGNED_SHORT:
-        case TYPES::INT:
-        case TYPES::UNSIGNED_INT:
-        case TYPES::LONG:
-        case TYPES::UNSIGNED_LONG:
-        case TYPES::LONG_LONG:
-        case TYPES::UNSIGNED_LONG_LONG:
-            break;
-        default:
-            // исключение - недопустимый тип экземпляра класса
-            // разрешены: short, unsigned short, int, unsigned int,
+        size_t typeList = typeid(T).hash_code();
+
+        if (!(
+            (typeList == typeid(int               ).hash_code()) ||
+            (typeList == typeid(unsigned int      ).hash_code()) ||
+            (typeList == typeid(short             ).hash_code()) ||
+            (typeList == typeid(unsigned short    ).hash_code()) ||
+            (typeList == typeid(long              ).hash_code()) ||
+            (typeList == typeid(unsigned long     ).hash_code()) ||
+            (typeList == typeid(long long         ).hash_code()) ||
+            (typeList == typeid(unsigned long long).hash_code())
+            )) {
+            // РёСЃРєР»СЋС‡РµРЅРёРµ - РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№ С‚РёРї СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР°
+            // СЂР°Р·СЂРµС€РµРЅС‹: short, unsigned short, int, unsigned int,
             // long, unsigned long, long long, unsigned long long
             throw ListExceptions(EXCEPTIONS::INVALID_CLASS_INSTANCE_TYPE, __LINE__, __FILE__);
         }
     }
 
-    // ДЕСТРУКТОР
+    // Р”Р•РЎРўР РЈРљРўРћР 
     ~List() {
-//        std::cout << " Деструктор списка" << std::endl;
+//        std::cout << " Р”РµСЃС‚СЂСѓРєС‚РѕСЂ СЃРїРёСЃРєР°" << std::endl;
         DeleteAll();
     }
 
-    // МЕТОД информирования о количестве элементов в списке
+    // РњР•РўРћР” РёРЅС„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ Рѕ РєРѕР»РёС‡РµСЃС‚РІРµ СЌР»РµРјРµРЅС‚РѕРІ РІ СЃРїРёСЃРєРµ
     size_t getNumber() const { return number; }
 
-    // МЕТОД добавления элемента в голову списка
+    // РњР•РўРћР” РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
     void AddToHead(bool keyCount = true);
 
-    // МЕТОД добавления элемента в хвост списка
+    // РњР•РўРћР” РґРѕР±Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РІ С…РІРѕСЃС‚ СЃРїРёСЃРєР°
     void AddToTail(bool keyCount = true);
 
-    // МЕТОД удаления всех элементов
+    // РњР•РўРћР” СѓРґР°Р»РµРЅРёСЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ
     void DeleteAll();
 
-    // МЕТОД отображения всех элементов списка на экран от первого к последнему
+    // РњР•РўРћР” РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР° РЅР° СЌРєСЂР°РЅ РѕС‚ РїРµСЂРІРѕРіРѕ Рє РїРѕСЃР»РµРґРЅРµРјСѓ
     void Show() const;
 
-    // МЕТОД отображения всех элементов списка на экран от последнего к первому
+    // РњР•РўРћР” РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР° РЅР° СЌРєСЂР°РЅ РѕС‚ РїРѕСЃР»РµРґРЅРµРіРѕ Рє РїРµСЂРІРѕРјСѓ
     void RetroShow() const;
 
-    // МЕТОД удаления элемента из головы списка
+    // РњР•РўРћР” СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РёР· РіРѕР»РѕРІС‹ СЃРїРёСЃРєР°
     void DeleteFromHead();
 
-    // МЕТОД удаления элемента из хвоста списка
+    // РњР•РўРћР” СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РёР· С…РІРѕСЃС‚Р° СЃРїРёСЃРєР°
     void DeleteFromTail();
 
-    // МЕТОД вставки элемента в заданную позицию списка
+    // РњР•РўРћР” РІСЃС‚Р°РІРєРё СЌР»РµРјРµРЅС‚Р° РІ Р·Р°РґР°РЅРЅСѓСЋ РїРѕР·РёС†РёСЋ СЃРїРёСЃРєР°
     void insertElementInPosition(const size_t insertionPosition);
 
-    // МЕТОД удаления элемента на заданной позиции списка
+    // РњР•РўРћР” СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РЅР° Р·Р°РґР°РЅРЅРѕР№ РїРѕР·РёС†РёРё СЃРїРёСЃРєР°
     void deletingItemSpecifiedPosition(const size_t positionToDelete);
 
-    // МЕТОД поиска позиции элемента с определенным значением
+    // РњР•РўРћР” РїРѕРёСЃРєР° РїРѕР·РёС†РёРё СЌР»РµРјРµРЅС‚Р° СЃ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј
     size_t searchForItemPositionWithSpecificValue(const T value) const;
 
-    // МЕТОД поиска и замены элемента с определенным значением
+    // РњР•РўРћР” РїРѕРёСЃРєР° Рё Р·Р°РјРµРЅС‹ СЌР»РµРјРµРЅС‚Р° СЃ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј
     int findAndReplaceElementWithSpecificValue(const T previousValue, const T newValue);
 
-    // МЕТОД переворота списка
+    // РњР•РўРћР” РїРµСЂРµРІРѕСЂРѕС‚Р° СЃРїРёСЃРєР°
     void flipList();
 };
 

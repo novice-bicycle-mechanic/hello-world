@@ -1,22 +1,22 @@
-// DZ_ST_C++_07_dz23_vstrecha23_zadanie_DynamicArray_main.cpp
+п»ї// DZ_ST_C++_07_dz23_vstrecha23_zadanie_DynamicArray_main.cpp
 //
-// задание 1 из файла Domasnee_zadanie_1594661480.txt
-// Выполните домашние задания после уроков 3, 4, 5
-// Урок 4. Задание 1
+// Р·Р°РґР°РЅРёРµ 1 РёР· С„Р°Р№Р»Р° Domasnee_zadanie_1594661480.txt
+// Р’С‹РїРѕР»РЅРёС‚Рµ РґРѕРјР°С€РЅРёРµ Р·Р°РґР°РЅРёСЏ РїРѕСЃР»Рµ СѓСЂРѕРєРѕРІ 3, 4, 5
+// РЈСЂРѕРє 4. Р—Р°РґР°РЅРёРµ 1
 /*
-Создайте класс динамического массива, в котором
-реализована проверка выхода за границы массива.
-Перегрузите операторы: [ ], =, +, -, ++ (добавление
-элемента в конец массива), –– (удаление элемента
-из конца массива).
+РЎРѕР·РґР°Р№С‚Рµ РєР»Р°СЃСЃ РґРёРЅР°РјРёС‡РµСЃРєРѕРіРѕ РјР°СЃСЃРёРІР°, РІ РєРѕС‚РѕСЂРѕРј
+СЂРµР°Р»РёР·РѕРІР°РЅР° РїСЂРѕРІРµСЂРєР° РІС‹С…РѕРґР° Р·Р° РіСЂР°РЅРёС†С‹ РјР°СЃСЃРёРІР°.
+РџРµСЂРµРіСЂСѓР·РёС‚Рµ РѕРїРµСЂР°С‚РѕСЂС‹: [ ], =, +, -, ++ (РґРѕР±Р°РІР»РµРЅРёРµ
+СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС† РјР°СЃСЃРёРІР°), вЂ“вЂ“ (СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+РёР· РєРѕРЅС†Р° РјР°СЃСЃРёРІР°).
 */
 #include <iostream>
 #include <clocale>
 #include "DZ_ST_C++_07_dz23_vstrecha23_zadanie_DynamicArray.h"
-using namespace programming;
+using namespace spaceDynamicArray;
 
 
-// ГЛАВНАЯ ФУНКЦИЯ
+// Р“Р›РђР’РќРђРЇ Р¤РЈРќРљР¦РРЇ
 int main() {
 	setlocale(LC_ALL, "ru");
 
@@ -60,7 +60,23 @@ int main() {
 	DynamicArray arr7 = arr4 - arr2;
 	std::cout << "  arr7 = arr4 - arr2 >>> " << arr7 << std::endl;
 	std::cout << std::endl;
+	
+	Test test1(3);
+	test1.rang();
+	std::cout << "test1: " << test1 << std::endl;
+	std::cout << std::endl;
+
+	Test test2(5);
+	test2.rang();
+	std::cout << "test2: " << test2 << std::endl;
+	std::cout << std::endl;
+
+	Test test3 = test1 + test2;
+	std::cout << "test3 = test1 >>> " << test3 << std::endl;
+	std::cout << std::endl;
+
+
 
 	return 0;
 }
-// Конец ГЛАВНОЙ ФУНКЦИИ
+// РљРѕРЅРµС† Р“Р›РђР’РќРћР™ Р¤РЈРќРљР¦РР
